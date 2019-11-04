@@ -18,8 +18,8 @@ public class BodyPartFragment extends Fragment {
     //Create a tag for logging
     private static final String TAG = "BodyPartFragment";
 
-    private List<Integer> imageId;
-    private int listIndex;
+    private List<Integer> mImageId;
+    private int mListIndex;
 
     //Mandatory constructor for instantiating the fragment
     public BodyPartFragment(){
@@ -34,11 +34,21 @@ public class BodyPartFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_body_part,container,false);
 
         //Get a reference to the ImageView in the fragment layout
-        ImageView imageView = (ImageView) rootView.findViewById(R.id.body_part_image_view);
+        final ImageView imageView = (ImageView) rootView.findViewById(R.id.body_part_image_view);
 
-       if(imageId != null){
+       if(mImageId != null){
            //Set the image resource to the list item at the stored index
-           imageView.setImageResource(imageId.get(listIndex));
+           imageView.setImageResource(mImageId.get(mListIndex));
+
+           imageView.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
+                   if(mListIndex < mImageId.size()-1){
+                       mListIndex++;
+                   }else{mListIndex = 0;}
+                   imageView.setImageResource(mImageId.get(mListIndex));
+               }
+           });
        }else{
            //Log a message saying the image id list is null
            Log.v(TAG,"fragment has a null list of image ids");
@@ -51,11 +61,11 @@ public class BodyPartFragment extends Fragment {
     //Setter methods for keeping track of the list images this fragment can display and which image
     //in the list is currently being displayed
     public void setImageId(List<Integer> imageId){
-        this.imageId = imageId;
+        mImageId = imageId;
 
 
     }
     public void setListIndex(int index){
-        this.listIndex = index;
+        mListIndex = index;
     }
 }

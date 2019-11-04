@@ -32,7 +32,7 @@ public class AndroidMeActivity extends AppCompatActivity {
 
         //Create an instance of the BodyPartFragment for the body fragment
         BodyPartFragment bodyFragment = new BodyPartFragment();
-        headFragment.setImageId(AndroidImageAssets.getBodies());
+        bodyFragment.setImageId(AndroidImageAssets.getBodies());
         //Fragment Support
         fragmentManager.beginTransaction()
                 .add(R.id.body_container, bodyFragment)
@@ -40,7 +40,7 @@ public class AndroidMeActivity extends AppCompatActivity {
 
         //Create an instance of the BodyPartFragment for the leg fragment
         BodyPartFragment legFragment = new BodyPartFragment();
-        headFragment.setImageId(AndroidImageAssets.getLegs());
+        legFragment.setImageId(AndroidImageAssets.getLegs());
         //Fragment Support
         fragmentManager.beginTransaction()
                 .add(R.id.legs_container, legFragment)
